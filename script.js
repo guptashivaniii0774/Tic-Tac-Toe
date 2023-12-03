@@ -37,7 +37,6 @@ const checkWin = () => {
     })
 }
 
-
 // Game Logic 
 music.play()
 let boxes = document.getElementsByClassName("box");
@@ -51,17 +50,12 @@ Array.from(boxes).forEach(element => {
             checkWin();
             if (!isgameover) {
                 document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
-               
             }
-        
-
         }
     })
-   
 })
 
-
-// Add oneclick listener to reset button
+// Add onclick listener to reset button
 reset.addEventListener('click', () => {
     let boxtext = document.querySelectorAll('.boxtext');
     Array.from(boxtext).forEach(element => {
@@ -70,10 +64,17 @@ reset.addEventListener('click', () => {
     turn = "X";
     isgameover = false
    
-    document.querySelector(".line").style.width = "0";
+    document.querySelector(".line").style.width = "";
     document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px"
+});
 
-
-
-})
+// Add this listener to handle the line responsiveness
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+        document.querySelector(".line").style.width = "100%";
+        
+    } else {
+        document.querySelector(".line").style.width = "";
+    }
+});
